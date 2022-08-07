@@ -1,0 +1,41 @@
+query Performances {
+  queryPerformance {
+    id
+    title
+    subtitle
+  }
+}
+
+query GetPerformance($id: ID!) {
+  getPerformance(id: $id) {
+    id
+    title
+    subtitle
+    opening
+    closing
+    companies {
+      name
+    }
+  }
+}
+
+mutation AddPerformance($input: AddPerformanceInput!) {
+  addPerformance(input: [$input]) {
+    performance {
+      id
+      title
+    }
+  }
+}
+
+mutation SavePerformance($input: UpdatePerformanceInput!) {
+  updatePerformance(input: $input) {
+    performance {
+      id
+      title
+      subtitle
+      opening
+      closing
+    }
+  }
+}

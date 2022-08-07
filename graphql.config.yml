@@ -1,0 +1,6 @@
+# schema: https://throbbing-field-240070.us-west-2.aws.cloud.dgraph.io/graphql
+# extensions:
+#   languageService:
+#     cacheSchemaFileForLookup: true
+schema: ./schema.graphql
+documents: src/**/*.graphql

@@ -1,0 +1,10 @@
+schema: https://throbbing-field-240070.us-west-2.aws.cloud.dgraph.io/graphql
+documents: ./src/**/*.graphql
+generates:
+  ./src/lib/graphql/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - graphql-codegen-svelte-apollo
+    config: 
+        clientPath: ./client

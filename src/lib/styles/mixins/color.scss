@@ -1,0 +1,23 @@
+@mixin blue {
+    color: var(--blue);
+}
+
+@mixin green {
+    color: var(--green);
+}
+
+@mixin red {
+    color: var(--red);
+}
+
+@mixin primary {
+    color: var(--primary);
+}
+
+@mixin secondary {
+    color: var(--secondary);
+}
+
+@mixin accent {
+    color: var(--accent);
+}

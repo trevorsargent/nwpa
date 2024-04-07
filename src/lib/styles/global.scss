@@ -1,0 +1,133 @@
+@import './reset.css';
+@import './mixins/typography.scss';
+
+:root {
+	--dark: #111;
+	--light-rgb: 204, 204, 204;
+	--light: rgb(var(--light-rgb));
+	--light-alpha: rgba(var(--light-rgb), 0.5);
+	--green: #90aa86;
+	--red: #d55672;
+	--blue: #7cc6fe;
+
+	--primary: var(--green);
+	--secondary: var(--blue);
+	--accent: var(--red);
+
+	--alpha-1: 0.7;
+	--alpha-9: 0.07;
+
+	--font-title: 'Roboto', sans-serif;
+	--font-body: 'Roboto', sans-serif;
+}
+
+body {
+	background: var(--dark);
+	color: var(--light);
+	font-family: var(--font-body);
+}
+
+input {
+	background-color: var(--dark);
+	color: var(--light);
+	padding: 0.25rem;
+	border: none;
+	outline: 1px solid var(--light-alpha);
+	outline-style: dotted;
+	border-radius: 0.25rem;
+}
+
+input:focus-visible {
+	outline-color: var(--light);
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	min-width: 10rem;
+}
+
+h1 {
+	@include h1;
+}
+
+h2 {
+	@include h2;
+}
+h3 {
+	@include h3;
+}
+
+a:visited {
+	color: var(--light);
+	font-family: var(--font-body);
+}
+
+p {
+	margin: 1rem 0;
+	line-height: 1.25;
+	font-weight: 200;
+}
+
+a {
+	color: var(--light);
+	text-decoration: none;
+}
+
+a:visited {
+	color: var(--light);
+}
+/* Layout */
+
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+
+section {
+	margin-top: 2;
+	margin-bottom: 3rem;
+}
+
+.text-column {
+	max-width: 800px;
+	width: 800px;
+	margin: 0 auto;
+}
+
+[card=''] {
+	position: relative;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+
+[card='']::before {
+	position: absolute;
+	content: '';
+	inset: 0;
+	background: var(--light);
+	z-index: -1;
+	opacity: var(--alpha-9);
+}
+
+button {
+	background-color: var(--dark);
+	color: var(--light);
+	border: 1px solid var(--light-alpha);
+	padding: 0.25rem;
+	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+button:hover {
+	border-color: var(--light);
+}
+
+button:active {
+	background-color: var(--light-alpha);
+}

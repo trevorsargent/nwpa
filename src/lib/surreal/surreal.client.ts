@@ -1,16 +1,12 @@
 import Surreal from 'surrealdb.js'
-import dot from 'dotenv'
-import { fail } from '@sveltejs/kit'
+import { env } from '$env/dynamic/private'
 
-dot.config()
-
-const { DB_HOST, DB_PORT, DB_USER, DB_PSWD } = process.env
-
+const { DB_HOST, DB_PORT, DB_USER, DB_PSWD, DB_NAME } = env
 let db: Surreal
 
 export const getClient = async (): Promise<Surreal> => {
 	const path = `ws://${DB_HOST}:${DB_PORT}/rpc`
-	console.debug('connecting to db at', path)
+	console.debug('connecting to db at', path, 'with', DB_USER, DB_PSWD)
 
 	if (!db) {
 		db = new Surreal()
@@ -20,8 +16,8 @@ export const getClient = async (): Promise<Surreal> => {
 		await db.signin({
 			username: DB_USER!,
 			password: DB_PSWD!,
-			database: 'nwpa',
-			namespace: 'nwpa'
+			database: DB_NAME!,
+			namespace: 'default'
 		})
 	}
 	return db

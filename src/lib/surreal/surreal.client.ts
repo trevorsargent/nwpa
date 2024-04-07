@@ -11,7 +11,7 @@ export const getClient = async (): Promise<Surreal> => {
 	if (!db) {
 		db = new Surreal()
 
-		await db.connect(path, { namespace: 'nwpa', database: 'nwpa' })
+		await db.connect(path, { namespace: 'default', database: DB_NAME! })
 
 		await db.signin({
 			username: DB_USER!,

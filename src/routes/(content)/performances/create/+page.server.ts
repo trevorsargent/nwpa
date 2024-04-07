@@ -1,8 +1,8 @@
-import { getClient } from '$lib/surreal/surreal.client'
+import { getSurreal } from '$lib/clients/surreal.client'
 import { redirect } from '@sveltejs/kit'
 
 export const load = async () => {
-	const result = await (await getClient()).create('performance')
+	const result = await (await getSurreal()).create('performance')
 
 	const performance = result.shift()
 

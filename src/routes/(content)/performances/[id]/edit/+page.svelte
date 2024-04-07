@@ -7,7 +7,7 @@
 </script>
 
 <div class="text-column">
-	<form method="post" action="?/submit">
+	<form method="post" action="?/submit" enctype="multipart/form-data">
 		<input type="text" bind:value={data.performance.title} name="title" placeholder="title" />
 		<input
 			type="text"
@@ -25,7 +25,22 @@
 
 		<h2>Makers</h2>
 
-		<Picker keyChoices={data.allMakers} valueChoices={data.allMakers} />
+		<h2>Images</h2>
+
+		<h3>Keep:</h3>
+
+		<div class="images">
+			{#each data.images as image}
+				<div class="img">
+					{#await image.url then url}
+						<img src={url} alt="" />
+						<input type="checkbox" name="keep" id={url} checked={true} value={image.name} />
+					{/await}
+				</div>
+			{/each}
+		</div>
+
+		<input multiple type="file" name="file" id="file" accept="image/*" />
 	</form>
 </div>
 
@@ -47,5 +62,15 @@
 		right: 1rem;
 		border: none;
 		background: none;
+	}
+
+	.images {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+
+	img {
+		width: 100%;
 	}
 </style>

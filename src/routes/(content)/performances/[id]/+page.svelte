@@ -2,7 +2,7 @@
 	import PageTitle from '$lib/components/PageTitle.svelte'
 	import type { PageServerData } from './$types'
 	export let data: PageServerData
-	const { performance, makers } = data
+	const { performance, makers, images } = data
 </script>
 
 <div class="text-column">
@@ -21,6 +21,16 @@
 			<span class="name"><a href="/maker/{maker.id}"> {maker.name}</a></span>
 		{/each}
 	</div>
+
+	<h2>Images</h2>
+</div>
+
+<div class="images">
+	{#each images as image}
+		{#await image.url then url}
+			<img src={url} alt="" />
+		{/await}
+	{/each}
 </div>
 
 <div class="edit">
@@ -55,5 +65,16 @@
 			border: none;
 			background: none;
 		}
+	}
+
+	.images {
+		display: grid;
+		width: 100%;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+
+	img {
+		width: 100%;
+		object-fit: cover;
 	}
 </style>

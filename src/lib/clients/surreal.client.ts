@@ -4,7 +4,7 @@ import { env } from '$env/dynamic/private'
 const { DB_HOST, DB_PORT, DB_USER, DB_PSWD, DB_NAME } = env
 let db: Surreal
 
-export const getClient = async (): Promise<Surreal> => {
+export const getSurreal = async (): Promise<Surreal> => {
 	const path = `ws://${DB_HOST}:${DB_PORT}/rpc`
 	console.debug('connecting to db at', path, 'with', DB_USER, DB_PSWD)
 
@@ -26,7 +26,7 @@ export const getClient = async (): Promise<Surreal> => {
 export const query = async <T>(thing: string): Promise<T | undefined> => {
 	const string = `select * from ${thing}`
 
-	const c = await getClient()
+	const c = await getSurreal()
 	const x = await c.query(string)
 	const items = x.shift() as T[]
 
@@ -38,7 +38,7 @@ export const query = async <T>(thing: string): Promise<T | undefined> => {
 }
 
 export const queryList = async <T>(string: string): Promise<T[] | undefined> => {
-	const c = await getClient()
+	const c = await getSurreal()
 	const x = await c.query(string)
 
 	return x.shift() as T[]
